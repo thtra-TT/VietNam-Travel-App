@@ -1,31 +1,53 @@
 package com.example.vntravelapp;
 
 import android.os.Bundle;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import com.example.vntravelapp.fragments.HomeFragment;
+import com.example.vntravelapp.fragments.SearchFragment;
+import com.example.vntravelapp.fragments.MapFragment;
+import com.example.vntravelapp.fragments.TripFragment;
+import com.example.vntravelapp.fragments.ProfileFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
-    private TextView tvWelcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        tvWelcome = findViewById(R.id.tvWelcome);
-
-        // Giả sử dữ liệu được truyền từ Login thành công qua Intent
-        String email = getIntent().getStringExtra("USER_EMAIL");
-        String username = getIntent().getStringExtra("USER_NAME");
-
-        if (username != null && !username.isEmpty()) {
-            tvWelcome.setText("Xin chào, " + username + "!");
-        } else if (email != null && !email.isEmpty()) {
-            // Lấy phần tên trước dấu @ của email để chào cho thân thiện
-            String emailName = email.split("@")[0];
-            tvWelcome.setText("Xin chào, " + emailName + "!");
-        } else {
-            tvWelcome.setText("Xin chào, Du khách!");
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
+        
+        // Load default fragment
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new HomeFragment())
+                .commit();
         }
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.nav_home) {
+                selectedFragment = new HomeFragment();
+            } else if (itemId == R.id.nav_search) {
+                selectedFragment = new SearchFragment();
+            } else if (itemId == R.id.nav_map) {
+                selectedFragment = new MapFragment();
+            } else if (itemId == R.id.nav_trip) {
+                selectedFragment = new TripFragment();
+            } else if (itemId == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment();
+            }
+
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, selectedFragment)
+                    .commit();
+            }
+            return true;
+        });
     }
 }
