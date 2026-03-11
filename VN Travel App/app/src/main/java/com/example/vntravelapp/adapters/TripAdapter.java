@@ -41,7 +41,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
 
         if (trip.getStatus().equals("Đã xác nhận")) {
             holder.tvStatus.setTextColor(Color.parseColor("#2E7D32"));
-            holder.tvStatus.setBackgroundResource(R.drawable.bg_search); // Assume a green tint bg if exists, or just reuse
         } else {
             holder.tvStatus.setTextColor(Color.parseColor("#FBC02D"));
         }
@@ -54,10 +53,14 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
             holder.btnAction.setText("Xem chi tiết");
         }
 
-        Glide.with(holder.itemView.getContext())
-                .load(trip.getImageUrl())
-                .placeholder(android.R.drawable.ic_menu_gallery)
-                .into(holder.ivTripImage);
+        if (trip.getImageResId() != 0) {
+            holder.ivTripImage.setImageResource(trip.getImageResId());
+        } else {
+            Glide.with(holder.itemView.getContext())
+                    .load(trip.getImageUrl())
+                    .placeholder(android.R.drawable.ic_menu_gallery)
+                    .into(holder.ivTripImage);
+        }
     }
 
     @Override

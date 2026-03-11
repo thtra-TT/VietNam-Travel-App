@@ -33,7 +33,7 @@ public class TripFragment extends Fragment {
             "Đã xác nhận", 
             "VHL250126", 
             "2.999.000đ", 
-            "https://vcdn1-dulich.vnecdn.net/2022/06/03/vinh-Ha-Long-2452-1654250227.jpg", 
+            R.mipmap.ic_launcher_vinhhalong, 
             false
         ));
         dummyTrips.add(new Trip(
@@ -43,7 +43,7 @@ public class TripFragment extends Fragment {
             "Chờ thanh toán", 
             "DNA050226", 
             "3.999.000đ", 
-            "https://vcdn1-dulich.vnecdn.net/2022/06/03/cau-vang-1654250227.jpg", 
+            R.mipmap.ic_launcher_hoian,
             true
         ));
 

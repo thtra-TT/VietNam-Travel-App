@@ -37,10 +37,14 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder
         holder.tvRating.setText("⭐ " + tour.getRating());
         holder.tvReviews.setText("(" + tour.getReviewCount() + " đánh giá)");
 
-        Glide.with(holder.itemView.getContext())
-                .load(tour.getImageUrl())
-                .placeholder(android.R.drawable.ic_menu_gallery)
-                .into(holder.ivTourImage);
+        if (tour.getImageResId() != 0) {
+            holder.ivTourImage.setImageResource(tour.getImageResId());
+        } else {
+            Glide.with(holder.itemView.getContext())
+                    .load(tour.getImageUrl())
+                    .placeholder(android.R.drawable.ic_menu_gallery)
+                    .into(holder.ivTourImage);
+        }
     }
 
     @Override

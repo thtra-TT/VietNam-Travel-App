@@ -35,8 +35,8 @@ public class HomeFragment extends Fragment {
         rvTours.setLayoutManager(new LinearLayoutManager(getContext()));
 
         List<Tour> dummyTours = new ArrayList<>();
-        dummyTours.add(new Tour("Du thuyền Vịnh Hạ Long 2N1Đ", "Quảng Ninh", "2 ngày 1 đêm", "2.999.000đ", "https://vcdn1-dulich.vnecdn.net/2022/06/03/vinh-Ha-Long-2452-1654250227.jpg", 4.8f, 234));
-        dummyTours.add(new Tour("Đà Nẵng - Hội An 3N2Đ", "Đà Nẵng", "3 ngày 2 đêm", "3.999.000đ", "https://vcdn1-dulich.vnecdn.net/2022/06/03/cau-vang-1654250227.jpg", 4.7f, 342));
+        dummyTours.add(new Tour("Du thuyền Vịnh Hạ Long 2N1Đ", "Quảng Ninh", "2 ngày 1 đêm", "2.999.000đ", R.mipmap.ic_launcher_vinhhalong, 4.8f, 234));
+        dummyTours.add(new Tour("Đà Nẵng - Hội An 3N2Đ", "Đà Nẵng", "3 ngày 2 đêm", "3.999.000đ", R.mipmap.ic_launcher_hoian, 4.7f, 342));
 
         TourAdapter adapter = new TourAdapter(dummyTours);
         rvTours.setAdapter(adapter);
