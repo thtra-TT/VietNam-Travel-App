@@ -14,8 +14,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText edtFullName, edtEmail, edtPhone, edtPassword, edtConfirmPassword;
     private CheckBox cbPolicy;
     private Button btnRegister;
-    private TextView tvToLogin;
-    private ImageView btnBack;
+    private TextView tvLogin;
+    private ImageView ivBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
         initViews();
 
         // Nút quay lại hoặc text "Đăng nhập"
-        btnBack.setOnClickListener(v -> finish());
-        tvToLogin.setOnClickListener(v -> finish());
+        ivBack.setOnClickListener(v -> finish());
+        tvLogin.setOnClickListener(v -> finish());
 
         btnRegister.setOnClickListener(v -> {
             performRegistration();
@@ -41,8 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         cbPolicy = findViewById(R.id.cbPolicy);
         btnRegister = findViewById(R.id.btnRegister);
-        tvToLogin = findViewById(R.id.tvToLogin);
-        btnBack = findViewById(R.id.btnBack);
+        tvLogin = findViewById(R.id.tvLogin);
+        ivBack = findViewById(R.id.ivBack);
     }
 
     private void performRegistration() {

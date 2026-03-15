@@ -1,7 +1,7 @@
 package com.example.vntravelapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences; // Phải có import này
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +18,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // Kiểm tra nếu đã đăng nhập rồi thì vào thẳng Home
+        SharedPreferences pref = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        if (pref.getBoolean("is_logged_in", false)) {
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_login);
 
         initViews();
@@ -41,34 +50,32 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleLogin() {
-        // BƯỚC 1: Lấy dữ liệu người dùng nhập vào trước
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
 
-        // BƯỚC 2: Kiểm tra xem có để trống không
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // BƯỚC 3: Đọc dữ liệu đã lưu từ SharedPreferences
         SharedPreferences pref = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        // "admin@gmail.com" và "123456" là giá trị mặc định nếu chưa đăng ký gì
         String savedEmail = pref.getString("saved_email", "admin@gmail.com");
         String savedPass = pref.getString("saved_password", "123456");
-        String savedName = pref.getString("saved_username", ""); // Lấy tên để chào ở Home
+        String savedName = pref.getString("saved_username", "User");
 
-        // BƯỚC 4: So sánh
         if (email.equals(savedEmail) && password.equals(savedPass)) {
+            // Đánh dấu đã đăng nhập
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("is_logged_in", true);
+            editor.apply();
+
             Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
 
-            // Chuyển sang màn hình Home
             Intent intent = new Intent(this, HomeActivity.class);
-            // Truyền dữ liệu sang Home để hiển thị lời chào
             intent.putExtra("USER_EMAIL", email);
             intent.putExtra("USER_NAME", savedName);
             startActivity(intent);
-            finish(); // Đóng màn hình Login để không quay lại được bằng nút Back
+            finish();
         } else {
             Toast.makeText(this, "Sai email hoặc mật khẩu", Toast.LENGTH_SHORT).show();
         }
