@@ -13,16 +13,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.vntravelapp.R;
 import com.example.vntravelapp.adapters.TourAdapter;
+import com.example.vntravelapp.database.DatabaseHelper;
 import com.example.vntravelapp.models.Tour;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
+
+    private DatabaseHelper dbHelper;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        dbHelper = new DatabaseHelper(getContext());
 
         // Setup Categories
         setupCategory(view.findViewById(R.id.catTour), "Tour", android.R.drawable.ic_menu_directions);
@@ -30,18 +33,29 @@ public class HomeFragment extends Fragment {
         setupCategory(view.findViewById(R.id.catTicket), "Vé", android.R.drawable.ic_menu_agenda);
         setupCategory(view.findViewById(R.id.catCombo), "Combo", android.R.drawable.ic_menu_save);
 
-        // Setup Tours RecyclerView
+        // Add Click Listeners
+        view.findViewById(R.id.catHotel).setOnClickListener(v -> switchFragment(new HotelFragment()));
+        view.findViewById(R.id.catTicket).setOnClickListener(v -> switchFragment(new TicketFragment()));
+        view.findViewById(R.id.catCombo).setOnClickListener(v -> switchFragment(new ComboFragment()));
+
+        // Setup Tours RecyclerView from SQLite
         RecyclerView rvTours = view.findViewById(R.id.rvTours);
         rvTours.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<Tour> dummyTours = new ArrayList<>();
-        dummyTours.add(new Tour("Du thuyền Vịnh Hạ Long 2N1Đ", "Quảng Ninh", "2 ngày 1 đêm", "2.999.000đ", R.mipmap.ic_launcher_vinhhalong, 4.8f, 234));
-        dummyTours.add(new Tour("Đà Nẵng - Hội An 3N2Đ", "Đà Nẵng", "3 ngày 2 đêm", "3.999.000đ", R.mipmap.ic_launcher_hoian, 4.7f, 342));
-
-        TourAdapter adapter = new TourAdapter(dummyTours);
+        List<Tour> tours = dbHelper.getAllTours();
+        TourAdapter adapter = new TourAdapter(tours);
         rvTours.setAdapter(adapter);
 
         return view;
+    }
+
+    private void switchFragment(Fragment fragment) {
+        if (getActivity() != null) {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
+        }
     }
 
     private void setupCategory(View view, String name, int iconRes) {

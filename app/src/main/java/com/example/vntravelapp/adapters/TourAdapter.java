@@ -6,9 +6,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.vntravelapp.R;
+import com.example.vntravelapp.fragments.DetailFragment;
 import com.example.vntravelapp.models.Tour;
 import java.util.List;
 
@@ -37,14 +39,32 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder
         holder.tvRating.setText("⭐ " + tour.getRating());
         holder.tvReviews.setText("(" + tour.getReviewCount() + " đánh giá)");
 
-        if (tour.getImageResId() != 0) {
-            holder.ivTourImage.setImageResource(tour.getImageResId());
-        } else {
+        if (tour.getImageUrl() != null && !tour.getImageUrl().isEmpty()) {
             Glide.with(holder.itemView.getContext())
                     .load(tour.getImageUrl())
                     .placeholder(android.R.drawable.ic_menu_gallery)
                     .into(holder.ivTourImage);
+        } else if (tour.getImageResId() != 0) {
+            holder.ivTourImage.setImageResource(tour.getImageResId());
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            AppCompatActivity activity = (AppCompatActivity) v.getContext();
+            DetailFragment fragment = DetailFragment.newInstance(
+                    tour.getTitle(),
+                    tour.getLocation(),
+                    tour.getPrice(),
+                    tour.getDescription(),
+                    tour.getImageResId(),
+                    tour.getImageUrl(), // Pass URL to DetailFragment
+                    tour.getRating(),
+                    tour.getReviewCount()
+            );
+            activity.getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        });
     }
 
     @Override
