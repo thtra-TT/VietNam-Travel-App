@@ -2,23 +2,28 @@ package com.example.vntravelapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.vntravelapp.database.DatabaseHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText edtEmail, edtPassword;
     private Button btnLogin;
     private TextView tvRegister, tvForgotPassword;
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        dbHelper = new DatabaseHelper(this);
+
         // Kiểm tra nếu đã đăng nhập rồi thì vào thẳng Home
         SharedPreferences pref = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         if (pref.getBoolean("is_logged_in", false)) {
@@ -58,25 +63,31 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        SharedPreferences pref = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        String savedEmail = pref.getString("saved_email", "admin@gmail.com");
-        String savedPass = pref.getString("saved_password", "123456");
-        String savedName = pref.getString("saved_username", "User");
+        // Kiểm tra đăng nhập qua DatabaseHelper
+        Cursor cursor = dbHelper.loginUser(email, password);
+        
+        if (cursor != null && cursor.moveToFirst()) {
+            // Lấy thông tin user từ cursor
+            String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
+            cursor.close();
 
-        if (email.equals(savedEmail) && password.equals(savedPass)) {
-            // Đánh dấu đã đăng nhập
+            // Lưu trạng thái đăng nhập vào SharedPreferences
+            SharedPreferences pref = getSharedPreferences("UserPrefs", MODE_PRIVATE);
             SharedPreferences.Editor editor = pref.edit();
             editor.putBoolean("is_logged_in", true);
+            editor.putString("saved_email", email);
+            editor.putString("saved_username", fullname);
             editor.apply();
 
             Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(this, HomeActivity.class);
             intent.putExtra("USER_EMAIL", email);
-            intent.putExtra("USER_NAME", savedName);
+            intent.putExtra("USER_NAME", fullname);
             startActivity(intent);
             finish();
         } else {
+            if (cursor != null) cursor.close();
             Toast.makeText(this, "Sai email hoặc mật khẩu", Toast.LENGTH_SHORT).show();
         }
     }
