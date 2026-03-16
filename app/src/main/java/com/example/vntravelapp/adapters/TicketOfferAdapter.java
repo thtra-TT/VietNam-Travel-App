@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import com.example.vntravelapp.R;
 import com.example.vntravelapp.models.TicketOffer;
 import java.util.List;
@@ -34,7 +35,15 @@ public class TicketOfferAdapter extends RecyclerView.Adapter<TicketOfferAdapter.
         holder.tvPrice.setText(offer.getPrice());
         holder.tvDiscount.setText(offer.getDiscount());
         holder.tvType.setText(offer.getType());
-        holder.ivOffer.setImageResource(offer.getImageRes());
+
+        if (offer.getImageUrl() != null && !offer.getImageUrl().isEmpty()) {
+            Glide.with(holder.itemView.getContext())
+                    .load(offer.getImageUrl())
+                    .placeholder(android.R.drawable.ic_menu_gallery)
+                    .into(holder.ivOffer);
+        } else {
+            holder.ivOffer.setImageResource(offer.getImageRes());
+        }
     }
 
     @Override

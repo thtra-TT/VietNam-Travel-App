@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         if (cursor != null && cursor.moveToFirst()) {
             // Lấy thông tin user từ cursor
             String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
+            String userImage = cursor.getString(cursor.getColumnIndexOrThrow("user_image"));
             cursor.close();
 
             // Lưu trạng thái đăng nhập vào SharedPreferences
@@ -77,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             editor.putBoolean("is_logged_in", true);
             editor.putString("saved_email", email);
             editor.putString("saved_username", fullname);
+            editor.putString("saved_user_image", userImage);
             editor.apply();
 
             Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
@@ -84,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this, HomeActivity.class);
             intent.putExtra("USER_EMAIL", email);
             intent.putExtra("USER_NAME", fullname);
+            intent.putExtra("USER_IMAGE", userImage);
             startActivity(intent);
             finish();
         } else {
