@@ -4,7 +4,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.example.vntravelapp.fragments.HomeFragment;
-import com.example.vntravelapp.fragments.SearchFragment;
 import com.example.vntravelapp.fragments.MapFragment;
 import com.example.vntravelapp.fragments.TripFragment;
 import com.example.vntravelapp.fragments.ProfileFragment;
@@ -32,8 +31,6 @@ public class HomeActivity extends AppCompatActivity {
 
             if (itemId == R.id.nav_home) {
                 selectedFragment = new HomeFragment();
-            } else if (itemId == R.id.nav_search) {
-                selectedFragment = new SearchFragment();
             } else if (itemId == R.id.nav_map) {
                 selectedFragment = new MapFragment();
             } else if (itemId == R.id.nav_trip) {

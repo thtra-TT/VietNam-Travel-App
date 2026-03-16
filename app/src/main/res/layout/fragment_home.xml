@@ -40,13 +40,15 @@
                     android:src="@android:drawable/ic_menu_search"
                     app:tint="#888"/>
                 <EditText
+                    android:id="@+id/etSearchHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Tìm tour, khách sạn, địa điểm..."
                     android:background="@null"
                     android:layout_marginStart="10dp"
                     android:textSize="14sp"
-                    android:focusable="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:clickable="true"/>
             </LinearLayout>
         </RelativeLayout>
@@ -72,6 +74,7 @@
             android:paddingHorizontal="15dp"
             android:layout_marginTop="15dp">
             <TextView
+                android:id="@+id/tvFeaturedTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tour nổi bật"
@@ -79,6 +82,7 @@
                 android:textStyle="bold"
                 android:textColor="#333"/>
             <TextView
+                android:id="@+id/tvViewAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Xem tất cả >"
@@ -87,6 +91,18 @@
                 android:textSize="14sp"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvNoResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Không tìm thấy"
+            android:textColor="#777"
+            android:textSize="14sp"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTours"

@@ -51,6 +51,11 @@ public class TicketOfferAdapter extends RecyclerView.Adapter<TicketOfferAdapter.
         return offers.size();
     }
 
+    public void updateOffers(List<TicketOffer> items) {
+        this.offers = items;
+        notifyDataSetChanged();
+    }
+
     static class OfferViewHolder extends RecyclerView.ViewHolder {
         ImageView ivOffer;
         TextView tvRoute, tvDateRange, tvPrice, tvDiscount, tvType;

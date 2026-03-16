@@ -72,6 +72,11 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder
         return tourList.size();
     }
 
+    public void updateTours(List<Tour> tours) {
+        this.tourList = tours;
+        notifyDataSetChanged();
+    }
+
     public static class TourViewHolder extends RecyclerView.ViewHolder {
         ImageView ivTourImage;
         TextView tvTitle, tvLocation, tvDuration, tvPrice, tvRating, tvReviews;

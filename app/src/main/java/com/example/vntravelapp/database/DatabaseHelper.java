@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
     private static final String DATABASE_NAME = "vntravel.db";
-    private static final int DATABASE_VERSION = 16; // Tăng version để cập nhật bảng users
+    private static final int DATABASE_VERSION = 17; // Seed thêm dữ liệu
 
     private static final String TABLE_TOURS = "tours";
     private static final String TABLE_HOTELS = "hotels";
@@ -70,7 +70,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertTour(db, "Chinh phục Fansipan", "Lào Cai", "3N2Đ", "4.200.000đ", "Trải nghiệm cáp treo và chạm tay vào nóc nhà Đông Dương tại Sa Pa.", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626520/1a3903f1-7c6a-4458-9fc6-519589789751.png", 4.7f, 85);
         insertTour(db, "Cố Đô Huế", "Thừa Thiên Huế", "2N1Đ", "1.500.000đ", "Tìm về vẻ đẹp trầm mặc của Đại Nội và các lăng tẩm triều Nguyễn.", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626555/2f7a9346-9a04-4efc-b96a-73652ed4c945.png", 4.6f, 120);
         insertTour(db, "Thành phố Ngàn Hoa", "Đà Lạt", "3N2Đ", "2.800.000đ", "Tận hưởng không khí se lạnh và check-in các vườn hoa đẹp mê hồn.", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626599/9e94999d-423a-4d23-a187-41317434956c.png", 4.8f, 310);
-        insertTour(db, "Miền Tây Sông Nước", "Cần Thơ", "2N1Đ", "1.200.000đ", "Trải nghiệm Chợ nổi Cái Răng và vườn trái cây trĩu quả.", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626660/54cda170-8e46-4faf-b0c4-1a2af78f777e.png", 4.5f, 95);
+        insertTour(db, "Bà Nà Hills - Cầu Vàng", "Đà Nẵng", "3N2Đ", "3.150.000đ", "Trải nghiệm Bà Nà Hills, Cầu Vàng và làng Pháp.", 0, "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", 4.7f, 180);
+        insertTour(db, "Phố cổ Hà Nội", "Hà Nội", "2N1Đ", "1.400.000đ", "Dạo phố cổ, Hồ Gươm, thưởng thức ẩm thực Hà Nội.", 0, "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee", 4.6f, 210);
+        insertTour(db, "Vũng Tàu biển xanh", "Bà Rịa - Vũng Tàu", "2N1Đ", "1.300.000đ", "Tắm biển Bãi Sau, tham quan tượng Chúa và hải đăng.", 0, "https://images.unsplash.com/photo-1500375592092-40eb2168fd21", 4.5f, 95);
+        insertTour(db, "Nha Trang 4 đảo", "Khánh Hòa", "3N2Đ", "3.600.000đ", "Tour 4 đảo, lặn ngắm san hô và tắm bùn khoáng.", 0, "https://images.unsplash.com/photo-1470770841072-f978cf4d019e", 4.7f, 160);
+        insertTour(db, "Cao nguyên đá Đồng Văn", "Hà Giang", "3N2Đ", "3.900.000đ", "Chinh phục đèo Mã Pì Lèng và phố cổ Đồng Văn.", 0, "https://images.unsplash.com/photo-1501785888041-af3ef285b470", 4.8f, 110);
 
         insertHotel(db, "Vinpearl Phú Quốc", "Phú Quốc", "Mô tả Vinpearl", "2.500.000đ", 0, "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg", 4.7f, 300);
         insertHotel(db, "InterContinental Đà Nẵng", "Đà Nẵng", "Tọa lạc tại Bán đảo Sơn Trà, thiết kế bởi kiến trúc sư lừng danh Bill Bensley.", "8.500.000đ", 0, "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb", 4.9f, 120);
@@ -78,13 +82,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertHotel(db, "Caravelle Saigon", "TP. Hồ Chí Minh", "Khách sạn biểu tượng lịch sử ngay trung tâm thành phố với view nhìn ra Nhà hát lớn.", "4.100.000đ", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626268/4ae52bfa-a1b2-42b6-9b70-df0f458f479b.png", 4.6f, 890);
         insertHotel(db, "Amanoi Resort", "Ninh Thuận", "Khu nghỉ dưỡng 6 sao ẩn mình trong Vườn quốc gia Núi Chúa, yên bình và riêng tư.", "25.000.000đ", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626323/a2a6d3b5-01de-4fba-924d-c3f152302981.png", 5.0f, 50);
         insertHotel(db, "Six Senses Ninh Van Bay", "Nha Trang", "Tận hưởng không gian thiên nhiên hoang sơ với các villa nằm sát mép biển.", "12.000.000đ", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626387/fc826700-1d72-4f78-b7bc-f54f9293a31d.png", 4.9f, 210);
-
+        insertHotel(db, "Furama Resort Đà Nẵng", "Đà Nẵng", "Resort bên bãi biển Mỹ Khê, không gian nghỉ dưỡng sang trọng.", "5.200.000đ", 0, "https://images.unsplash.com/photo-1445019980597-93fa8acb246c", 4.7f, 260);
+        insertHotel(db, "JW Marriott Phu Quoc Emerald Bay", "Phú Quốc", "Thiết kế độc đáo, bãi biển riêng và dịch vụ 5 sao.", "9.800.000đ", 0, "https://images.unsplash.com/photo-1501117716987-c8e1ecb210c0", 4.9f, 190);
+        insertHotel(db, "Vinpearl Hạ Long Bay Resort", "Quảng Ninh", "Resort trên đảo riêng giữa vịnh Hạ Long.", "4.900.000đ", 0, "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85", 4.8f, 230);
+        insertHotel(db, "Lotte Hotel Hà Nội", "Hà Nội", "Khách sạn cao cấp tại trung tâm Ba Đình, view toàn cảnh thành phố.", "3.600.000đ", 0, "https://images.unsplash.com/photo-1500051638674-ff996a0ec29e", 4.6f, 410);
+        insertHotel(db, "Meliá Ba Vì Mountain Retreat", "Hà Nội", "Nghỉ dưỡng giữa rừng thông, gần Vườn quốc gia Ba Vì.", "2.900.000đ", 0, "https://images.unsplash.com/photo-1469474968028-56623f02e42e", 4.5f, 120);
+        insertHotel(db, "Anantara Mũi Né Resort", "Bình Thuận", "Resort ven biển với không gian yên tĩnh và hồ bơi rộng.", "4.200.000đ", 0, "https://images.unsplash.com/photo-1501117716987-c8e1ecb210c0", 4.7f, 180);
 
         insertCombo(db, "Siêu Combo Đà Nẵng", "Đà Nẵng", "Vé máy bay khứ hồi + Khách sạn 4 sao + Ăn sáng buffet.", "5.000.000đ", "3.990.000đ", 0, "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg", 4.8f, "HOT");
         insertCombo(db, "Combo Kỳ Nghỉ Phú Quốc", "Kiên Giang", "Vé máy bay + VinOasis 3N2Đ + Vé VinWonders & Safari.", "7.500.000đ", "5.850.000đ", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626789/834c6022-0daa-4f57-82d4-c1907850ea7e.png", 4.9f, "BEST SELLER");
         insertCombo(db, "Combo Sapa Mờ Sương", "Lào Cai", "Xe giường nằm InterBus + Khách sạn view núi + Ăn sáng.", "2.200.000đ", "1.650.000đ", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626828/9dd0a628-4ddf-44bb-a760-87b8f78f8b67.png", 4.7f, "GIÁ TỐT");
         insertCombo(db, "Combo Quy Nhơn Biển Nhớ", "Bình Định", "Vé máy bay + FLC Quy Nhơn 3N2Đ + Đưa đón sân bay.", "6.200.000đ", "4.990.000đ", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626858/e8527db1-1289-49bb-b720-89660d3a6bd8.png", 4.6f, "NEW");
         insertCombo(db, "Combo Nha Trang Hè Rực Rỡ", "Khánh Hòa", "Khách sạn mặt biển + Tour 4 đảo + Tiệc hải sản.", "4.500.000đ", "3.200.000đ", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626895/0ab8e4e8-af86-40ce-80fe-5113f04f1693.png", 4.8f, "GIẢM 30%");
+
+        insertTicket(db, "Hà Nội - Đà Nẵng", "15/04 - 20/04", "1.590.000đ", "Giảm 20%", "Vé khứ hồi", 0, "https://images.unsplash.com/photo-1436491865332-7a61a109cc05");
+        insertTicket(db, "TP. Hồ Chí Minh - Phú Quốc", "05/05 - 10/05", "1.990.000đ", "Giảm 15%", "Vé khứ hồi", 0, "https://images.unsplash.com/photo-1500534314209-a26db0f5c15c");
+        insertTicket(db, "Hà Nội - Nha Trang", "10/06 - 15/06", "2.250.000đ", "Giảm 10%", "Vé khứ hồi", 0, "https://images.unsplash.com/photo-1529070538774-1843cb3265df");
+        insertTicket(db, "Đà Nẵng - Cần Thơ", "08/07 - 12/07", "1.780.000đ", "Giảm 12%", "Vé khứ hồi", 0, "https://images.unsplash.com/photo-1469474968028-56623f02e42e");
+        insertTicket(db, "TP. Hồ Chí Minh - Huế", "20/07 - 25/07", "1.450.000đ", "Giảm 18%", "Vé khứ hồi", 0, "https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+        insertTicket(db, "Hà Nội - Đà Lạt", "02/08 - 06/08", "2.050.000đ", "Giảm 8%", "Vé khứ hồi", 0, "https://images.unsplash.com/photo-1470770841072-f978cf4d019e");
     }
 
     private void insertTour(SQLiteDatabase db, String t, String l, String d, String p, String desc, int r, String u, float rat, int rev) {
@@ -101,6 +117,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues v = new ContentValues();
         v.put(COLUMN_TITLE, t); v.put(COLUMN_LOCATION, l); v.put(COLUMN_DESCRIPTION, d); v.put(COLUMN_ORIGINAL_PRICE, o); v.put(COLUMN_PRICE, p); v.put(COLUMN_IMAGE_RES, r); v.put(COLUMN_IMAGE_URL, u); v.put(COLUMN_RATING, rat); v.put(COLUMN_BADGE, b);
         db.insert(TABLE_COMBOS, null, v);
+    }
+    private void insertTicket(SQLiteDatabase db, String r, String d, String p, String dis, String t, int img, String url) {
+        ContentValues v = new ContentValues();
+        v.put(COLUMN_TITLE, r); v.put(COLUMN_DATE_RANGE, d); v.put(COLUMN_PRICE, p); v.put(COLUMN_DISCOUNT, dis); v.put(COLUMN_TYPE, t); v.put(COLUMN_IMAGE_RES, img); v.put(COLUMN_IMAGE_URL, url);
+        db.insert(TABLE_TICKETS, null, v);
     }
 
     @Override

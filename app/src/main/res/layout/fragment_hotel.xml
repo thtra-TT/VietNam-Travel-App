@@ -44,6 +44,7 @@
                 app:tint="#888" />
 
             <EditText
+                android:id="@+id/etSearchHotel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -74,6 +75,18 @@
             android:textSize="14sp"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvNoResultsHotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Không tìm thấy"
+        android:textColor="#777"
+        android:textSize="14sp"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHotels"

@@ -72,6 +72,11 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
         return hotels.size();
     }
 
+    public void updateHotels(List<Hotel> items) {
+        this.hotels = items;
+        notifyDataSetChanged();
+    }
+
     static class HotelViewHolder extends RecyclerView.ViewHolder {
         ImageView ivHotel;
         TextView tvName, tvLocation, tvDescription, tvPrice, tvRating, tvReviews;

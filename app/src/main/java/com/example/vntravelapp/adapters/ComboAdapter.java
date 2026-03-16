@@ -76,6 +76,11 @@ public class ComboAdapter extends RecyclerView.Adapter<ComboAdapter.ComboViewHol
         return combos.size();
     }
 
+    public void updateCombos(List<Combo> items) {
+        this.combos = items;
+        notifyDataSetChanged();
+    }
+
     static class ComboViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCombo;
         TextView tvTitle, tvLocation, tvDescription, tvOriginalPrice, tvDiscountedPrice, tvRating, tvBadge;
