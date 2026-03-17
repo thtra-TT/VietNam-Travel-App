@@ -1,0 +1,250 @@
+[
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_profile_option.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_profile_option.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_activity_forgot_password.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/activity_forgot_password.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_dialog_select_location.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/dialog_select_location.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_ticket.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_ticket.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_activity_register.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/activity_register.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xxxhdpi_ic_launcher_hoian.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xxxhdpi/ic_launcher_hoian.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/drawable_bg_chat_user.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/drawable/bg_chat_user.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/xml_backup_rules.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_chat_ai.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_chat_ai.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/drawable_bg_home_header.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/drawable/bg_home_header.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_chat.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_chat.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_booking.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_booking.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_search_section.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_search_section.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_activity_home.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/activity_home.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_hotel.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_hotel.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_search_location.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_search_location.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xxhdpi_ic_launcher_hoian.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xxhdpi/ic_launcher_hoian.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_trip.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_trip.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xhdpi_ic_launcher_vinhhalong.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xhdpi/ic_launcher_vinhhalong.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_trip.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_trip.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_chat_user.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_chat_user.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_combo.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_combo.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_combo.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_combo.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-mdpi_ic_launcher_hoian.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-mdpi/ic_launcher_hoian.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-mdpi_ic_launcher_vinhhalong.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-mdpi/ic_launcher_vinhhalong.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/drawable_bg_chat_ai.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/drawable/bg_chat_ai.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_profile.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_tour.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_tour.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/drawable_bg_social_button.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/drawable/bg_social_button.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xhdpi_ic_launcher_hoian.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xhdpi/ic_launcher_hoian.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-hdpi_ic_launcher_vinhhalong.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-hdpi/ic_launcher_vinhhalong.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xxhdpi_ic_launcher_vinhhalong.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xxhdpi/ic_launcher_vinhhalong.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xxxhdpi_ic_launcher_vinhhalong.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xxxhdpi/ic_launcher_vinhhalong.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_search.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_search.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_hotel.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_hotel.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_activity_main.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_category.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_category.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/drawable_bg_edittext.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/drawable/bg_edittext.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_home.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_item_ticket_offer.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/item_ticket_offer.xml"
+    },
+    {
+        "merged": "com.example.vntravelapp-debug-32:/layout_fragment_chat.xml.flat",
+        "source": "com.example.vntravelapp-main-34:/layout/fragment_chat.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_map.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_map.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/drawable_bg_search.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/drawable/bg_search.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/menu_bottom_nav_menu.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_fragment_detail.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/fragment_detail.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/layout_activity_login.xml.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-hdpi_ic_launcher_hoian.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-hdpi/ic_launcher_hoian.webp"
+    },
+    {
+        "merged": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-debug-32:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/harry/.gradle/daemon/9.1.0/com.example.vntravelapp-main-34:/mipmap-xxhdpi/ic_launcher_round.webp"
+    }
+]
