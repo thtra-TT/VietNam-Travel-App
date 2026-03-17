@@ -1,25 +1,55 @@
 package com.example.vntravelapp.adapters;
 
-import android.graphics.Color;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
 import com.example.vntravelapp.R;
+import com.example.vntravelapp.fragments.BookingFragment;
 import com.example.vntravelapp.models.Trip;
 import java.util.List;
 
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
 
-    private List<Trip> tripList;
+    public interface OnTripClickListener {
+        void onTripClick(Trip trip);
+    }
 
-    public TripAdapter(List<Trip> tripList) {
-        this.tripList = tripList;
+    public interface OnCancelClickListener {
+        void onCancelClick(Trip trip);
+    }
+
+    private List<Trip> trips;
+    private boolean isMyTrips;
+    private OnTripClickListener listener;
+    private OnCancelClickListener cancelListener;
+
+    public TripAdapter(List<Trip> trips) {
+        this.trips = trips;
+        this.isMyTrips = false;
+    }
+
+    public TripAdapter(List<Trip> trips, boolean isMyTrips) {
+        this.trips = trips;
+        this.isMyTrips = isMyTrips;
+    }
+
+    public TripAdapter(List<Trip> trips, boolean isMyTrips, OnCancelClickListener cancelListener) {
+        this.trips = trips;
+        this.isMyTrips = isMyTrips;
+        this.cancelListener = cancelListener;
+    }
+
+    public TripAdapter(List<Trip> trips, OnTripClickListener listener) {
+        this.trips = trips;
+        this.listener = listener;
+        this.isMyTrips = false;
     }
 
     @NonNull
@@ -31,58 +61,81 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TripViewHolder holder, int position) {
-        Trip trip = tripList.get(position);
-        holder.tvTitle.setText(trip.getTitle());
-        holder.tvLocation.setText(trip.getLocation());
-        holder.tvDate.setText(trip.getDate());
-        holder.tvStatus.setText(trip.getStatus());
-        holder.tvBookingCode.setText("Mã đặt chỗ: " + trip.getBookingCode());
+        Trip trip = trips.get(position);
+        holder.tvBrandName.setText(trip.getBrandName());
         holder.tvPrice.setText(trip.getPrice());
+        holder.tvDepartureTime.setText(trip.getDepartureTime());
+        holder.tvRoute.setText(trip.getDepartureLocation() + " - " + trip.getDestinationLocation());
+        holder.tvAvailableSeats.setText("Còn " + trip.getAvailableSeats() + " ghế");
 
-        if (trip.getStatus().equals("Đã xác nhận")) {
-            holder.tvStatus.setTextColor(Color.parseColor("#2E7D32"));
+        if (isMyTrips) {
+            String status = trip.getStatus();
+            if ("upcoming".equals(status)) {
+                holder.btnBook.setText("Huỷ chuyến");
+                holder.btnBook.setEnabled(true);
+                holder.btnBook.setBackgroundTintList(holder.itemView.getContext().getResources().getColorStateList(android.R.color.holo_red_dark));
+                holder.btnBook.setOnClickListener(v -> {
+                    if (cancelListener != null) {
+                        cancelListener.onCancelClick(trip);
+                    }
+                });
+            } else if ("completed".equals(status)) {
+                holder.btnBook.setText("Đã đi");
+                holder.btnBook.setEnabled(false);
+                holder.btnBook.setBackgroundTintList(holder.itemView.getContext().getResources().getColorStateList(android.R.color.darker_gray));
+            } else if ("cancelled".equals(status)) {
+                holder.btnBook.setText("Đã huỷ");
+                holder.btnBook.setEnabled(false);
+                holder.btnBook.setBackgroundTintList(holder.itemView.getContext().getResources().getColorStateList(android.R.color.darker_gray));
+            }
         } else {
-            holder.tvStatus.setTextColor(Color.parseColor("#FBC02D"));
+            holder.btnBook.setText("Chọn chuyến");
+            holder.btnBook.setEnabled(true);
+            holder.btnBook.setBackgroundTintList(null); // Reset to default if needed
+            holder.btnBook.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onTripClick(trip);
+                } else {
+                    AppCompatActivity activity = getAppCompatActivity(v.getContext());
+                    if (activity != null) {
+                        BookingFragment fragment = BookingFragment.newInstance(trip.getId());
+                        activity.getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                }
+            });
         }
+    }
 
-        if (trip.isCanPayNow()) {
-            holder.btnAction.setText("Thanh toán ngay");
-            holder.btnAction.setBackgroundColor(Color.BLACK);
-            holder.btnAction.setTextColor(Color.WHITE);
-        } else {
-            holder.btnAction.setText("Xem chi tiết");
+    private AppCompatActivity getAppCompatActivity(Context context) {
+        while (context instanceof ContextWrapper) {
+            if (context instanceof AppCompatActivity) {
+                return (AppCompatActivity) context;
+            }
+            context = ((ContextWrapper) context).getBaseContext();
         }
-
-        if (trip.getImageResId() != 0) {
-            holder.ivTripImage.setImageResource(trip.getImageResId());
-        } else {
-            Glide.with(holder.itemView.getContext())
-                    .load(trip.getImageUrl())
-                    .placeholder(android.R.drawable.ic_menu_gallery)
-                    .into(holder.ivTripImage);
-        }
+        return null;
     }
 
     @Override
     public int getItemCount() {
-        return tripList.size();
+        return trips.size();
     }
 
-    public static class TripViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivTripImage;
-        TextView tvTitle, tvLocation, tvDate, tvStatus, tvBookingCode, tvPrice;
-        Button btnAction;
+    static class TripViewHolder extends RecyclerView.ViewHolder {
+        TextView tvBrandName, tvPrice, tvDepartureTime, tvRoute, tvAvailableSeats;
+        Button btnBook;
 
         public TripViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivTripImage = itemView.findViewById(R.id.ivTripImage);
-            tvTitle = itemView.findViewById(R.id.tvTripTitle);
-            tvLocation = itemView.findViewById(R.id.tvTripLocation);
-            tvDate = itemView.findViewById(R.id.tvTripDate);
-            tvStatus = itemView.findViewById(R.id.tvTripStatus);
-            tvBookingCode = itemView.findViewById(R.id.tvBookingCode);
-            tvPrice = itemView.findViewById(R.id.tvTripPrice);
-            btnAction = itemView.findViewById(R.id.btnTripAction);
+            tvBrandName = itemView.findViewById(R.id.tvBrandName);
+            tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvDepartureTime = itemView.findViewById(R.id.tvDepartureTime);
+            tvRoute = itemView.findViewById(R.id.tvRoute);
+            tvAvailableSeats = itemView.findViewById(R.id.tvAvailableSeats);
+            btnBook = itemView.findViewById(R.id.btnBook);
         }
     }
 }

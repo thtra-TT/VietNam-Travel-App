@@ -1,45 +1,44 @@
 package com.example.vntravelapp.models;
 
 public class Trip {
-    private String title;
-    private String location;
-    private String date;
-    private String status;
-    private String bookingCode;
+    private int id;
+    private String departureLocation;
+    private String destinationLocation;
+    private String departureDate;
+    private String departureTime;
+    private int availableSeats;
+    private String brandName;
     private String price;
-    private String imageUrl;
-    private int imageResId = 0;
-    private boolean canPayNow;
+    private String status; // upcoming, completed, cancelled
 
-    public Trip(String title, String location, String date, String status, String bookingCode, String price, String imageUrl, boolean canPayNow) {
-        this.title = title;
-        this.location = location;
-        this.date = date;
-        this.status = status;
-        this.bookingCode = bookingCode;
+    public Trip(int id, String departureLocation, String destinationLocation, String departureDate, String departureTime, int availableSeats, String brandName, String price) {
+        this.id = id;
+        this.departureLocation = departureLocation;
+        this.destinationLocation = destinationLocation;
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+        this.availableSeats = availableSeats;
+        this.brandName = brandName;
         this.price = price;
-        this.imageUrl = imageUrl;
-        this.canPayNow = canPayNow;
+        this.status = "upcoming";
     }
 
-    public Trip(String title, String location, String date, String status, String bookingCode, String price, int imageResId, boolean canPayNow) {
-        this.title = title;
-        this.location = location;
-        this.date = date;
+    public Trip(int id, String departureLocation, String destinationLocation, String departureDate, String departureTime, int availableSeats, String brandName, String price, String status) {
+        this(id, departureLocation, destinationLocation, departureDate, departureTime, availableSeats, brandName, price);
         this.status = status;
-        this.bookingCode = bookingCode;
-        this.price = price;
-        this.imageResId = imageResId;
-        this.canPayNow = canPayNow;
     }
 
-    public String getTitle() { return title; }
-    public String getLocation() { return location; }
-    public String getDate() { return date; }
-    public String getStatus() { return status; }
-    public String getBookingCode() { return bookingCode; }
+    // Getters
+    public int getId() { return id; }
+    public String getDepartureLocation() { return departureLocation; }
+    public String getDestinationLocation() { return destinationLocation; }
+    public String getDepartureDate() { return departureDate; }
+    public String getDepartureTime() { return departureTime; }
+    public int getAvailableSeats() { return availableSeats; }
+    public String getBrandName() { return brandName; }
     public String getPrice() { return price; }
-    public String getImageUrl() { return imageUrl; }
-    public int getImageResId() { return imageResId; }
-    public boolean isCanPayNow() { return canPayNow; }
+    public String getStatus() { return status; }
+    
+    // Setter
+    public void setStatus(String status) { this.status = status; }
 }

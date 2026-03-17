@@ -11,44 +11,36 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.vntravelapp.R;
 import com.example.vntravelapp.adapters.TripAdapter;
+import com.example.vntravelapp.database.DatabaseHelper;
 import com.example.vntravelapp.models.Trip;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TripFragment extends Fragment {
 
+    private DatabaseHelper dbHelper;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trip, container, false);
 
+        dbHelper = new DatabaseHelper(getContext());
         RecyclerView rvTrips = view.findViewById(R.id.rvTrips);
         rvTrips.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<Trip> dummyTrips = new ArrayList<>();
-        dummyTrips.add(new Trip(
-            "Du thuyền Vịnh Hạ Long 2N1Đ", 
-            "Quảng Ninh", 
-            "25/01/2026", 
-            "Đã xác nhận", 
-            "VHL250126", 
-            "2.999.000đ", 
-            R.mipmap.ic_launcher_vinhhalong, 
-            false
-        ));
-        dummyTrips.add(new Trip(
-            "Đà Nẵng - Hội An 3N2Đ", 
-            "Đà Nẵng", 
-            "05/02/2026", 
-            "Chờ thanh toán", 
-            "DNA050226", 
-            "3.999.000đ", 
-            R.mipmap.ic_launcher_hoian,
-            true
-        ));
-
-        TripAdapter adapter = new TripAdapter(dummyTrips);
+        // Lấy danh sách vé đã đặt từ database
+        List<Trip> bookedTrips = dbHelper.getBookedTrips();
+        
+        // Hiển thị danh sách vé đã mua (isMyTrips = true)
+        TripAdapter adapter = new TripAdapter(bookedTrips, true);
         rvTrips.setAdapter(adapter);
+
+        // Hiển thị view thông báo nếu không có vé
+        View emptyView = view.findViewById(R.id.tvEmpty); // Giả sử có tvEmpty trong layout
+        if (emptyView != null) {
+            emptyView.setVisibility(bookedTrips.isEmpty() ? View.VISIBLE : View.GONE);
+        }
 
         return view;
     }
