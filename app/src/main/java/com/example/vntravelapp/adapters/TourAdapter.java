@@ -50,16 +50,21 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.TourViewHolder
 
         holder.itemView.setOnClickListener(v -> {
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
+
             DetailFragment fragment = DetailFragment.newInstance(
                     tour.getTitle(),
                     tour.getLocation(),
                     tour.getPrice(),
                     tour.getDescription(),
+                    tour.getItinerary(),
+                    tour.getIncluded(),
+                    tour.getExcluded(),
                     tour.getImageResId(),
-                    tour.getImageUrl(), // Pass URL to DetailFragment
+                    tour.getImageUrl(),
                     tour.getRating(),
                     tour.getReviewCount()
             );
+
             activity.getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .addToBackStack(null)

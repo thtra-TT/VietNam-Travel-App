@@ -1,13 +1,11 @@
 package com.example.vntravelapp;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.util.Patterns;
+import android.widget.*;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.vntravelapp.database.DatabaseHelper;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -27,13 +25,12 @@ public class RegisterActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
         initViews();
 
-        // Nút quay lại hoặc text "Đăng nhập"
+        // 🔙 Quay lại
         ivBack.setOnClickListener(v -> finish());
         tvLogin.setOnClickListener(v -> finish());
 
-        btnRegister.setOnClickListener(v -> {
-            performRegistration();
-        });
+        // 📝 Đăng ký
+        btnRegister.setOnClickListener(v -> performRegistration());
     }
 
     private void initViews() {
@@ -44,8 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         cbPolicy = findViewById(R.id.cbPolicy);
         btnRegister = findViewById(R.id.btnRegister);
-        tvLogin = findViewById(R.id.tvLogin);
-        ivBack = findViewById(R.id.ivBack);
+        tvLogin = findViewById(R.id.tvLogin);   // FIX đúng ID
+        ivBack = findViewById(R.id.ivBack);     // FIX đúng ID
     }
 
     private void performRegistration() {
@@ -55,8 +52,25 @@ public class RegisterActivity extends AppCompatActivity {
         String pass = edtPassword.getText().toString();
         String confirmPass = edtConfirmPassword.getText().toString();
 
+        // 🔴 Validate
         if (fullName.isEmpty() || email.isEmpty() || pass.isEmpty() || phone.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ các trường", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edtEmail.setError("Email không hợp lệ");
+            edtEmail.requestFocus();
+            return;
+        }
+
+        if (pass.length() < 6) {
+            edtPassword.setError("Mật khẩu tối thiểu 6 ký tự");
+            return;
+        }
+
+        if (!pass.equals(confirmPass)) {
+            edtConfirmPassword.setError("Mật khẩu không khớp");
             return;
         }
 
@@ -65,25 +79,21 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (!pass.equals(confirmPass)) {
-            Toast.makeText(this, "Mật khẩu xác nhận không khớp", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Kiểm tra email đã tồn tại chưa
+        // 🔍 Check email tồn tại
         if (dbHelper.checkEmailExists(email)) {
-            Toast.makeText(this, "Email này đã được đăng ký. Vui lòng sử dụng email khác.", Toast.LENGTH_SHORT).show();
+            edtEmail.setError("Email đã tồn tại");
+            edtEmail.requestFocus();
             return;
         }
 
-        // Thực hiện đăng ký vào SQLite
+        // 💾 Insert DB
         boolean success = dbHelper.registerUser(email, pass, fullName, phone);
 
         if (success) {
             Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
-            finish(); // Quay lại LoginActivity
+            finish(); // quay về login
         } else {
-            Toast.makeText(this, "Đăng ký thất bại. Vui lòng thử lại.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
         }
     }
 }

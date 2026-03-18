@@ -12,7 +12,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="156dp"
             android:background="@drawable/bg_home_header"
             android:padding="20dp">
 
@@ -20,36 +20,39 @@
                 android:id="@+id/tvWelcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Xin chào, Du khách!"
                 android:textColor="@android:color/white"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/bg_search"
                 android:layout_below="@id/tvWelcome"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/bg_search"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="15dp">
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@android:drawable/ic_menu_search"
-                    app:tint="#888"/>
+                    app:tint="#888" />
+
                 <EditText
                     android:id="@+id/etSearchHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Tìm tour, khách sạn, địa điểm..."
-                    android:background="@null"
                     android:layout_marginStart="10dp"
-                    android:textSize="14sp"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:clickable="true"/>
+                    android:background="@null"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
+                    android:hint="Tìm tour, khách sạn, địa điểm..."
+                    android:textSize="14sp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -59,7 +62,7 @@
             android:orientation="horizontal"
             android:weightSum="4"
             android:paddingHorizontal="10dp"
-            android:layout_marginTop="-30dp">
+            android:layout_marginTop="20dp">
 
             <include android:id="@+id/catTour" layout="@layout/item_category" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
             <include android:id="@+id/catHotel" layout="@layout/item_category" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
@@ -77,19 +80,10 @@
                 android:id="@+id/tvFeaturedTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tour nổi bật"
+                android:text="Tất cả tour"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#333"/>
-            <TextView
-                android:id="@+id/tvViewAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Xem tất cả >"
-                android:layout_alignParentEnd="true"
-                android:textColor="#007BFF"
-                android:textSize="14sp"
-                android:layout_centerVertical="true"/>
         </RelativeLayout>
 
         <TextView

@@ -55,6 +55,11 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
                     hotel.getLocation(),
                     hotel.getPrice(),
                     hotel.getDescription(),
+
+                    "", // itinerary ❗
+                    "", // included ❗
+                    "", // excluded ❗
+
                     hotel.getImageRes(),
                     hotel.getImageUrl(),
                     hotel.getRating(),

@@ -59,10 +59,15 @@ public class ComboAdapter extends RecyclerView.Adapter<ComboAdapter.ComboViewHol
                     combo.getLocation(),
                     combo.getDiscountedPrice(),
                     combo.getDescription(),
+
+                    "", // itinerary ❗
+                    "", // included ❗
+                    "", // excluded ❗
+
                     combo.getImageRes(),
                     combo.getImageUrl(),
                     combo.getRating(),
-                    250
+                    0 // reviews (combo không có thì cho 0)
             );
             activity.getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment)

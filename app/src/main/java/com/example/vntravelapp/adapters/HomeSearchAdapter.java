@@ -202,14 +202,19 @@ public class HomeSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             itemView.setOnClickListener(v -> {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 DetailFragment fragment = DetailFragment.newInstance(
-                    tour.getTitle(),
-                    tour.getLocation(),
-                    tour.getPrice(),
-                    tour.getDescription(),
-                    tour.getImageResId(),
-                    tour.getImageUrl(),
-                    tour.getRating(),
-                    tour.getReviewCount()
+                        tour.getTitle(),
+                        tour.getLocation(),
+                        tour.getPrice(),
+                        tour.getDescription(),
+
+                        "", // itinerary ❗
+                        "", // included ❗
+                        "", // excluded ❗
+
+                        tour.getImageResId(),
+                        tour.getImageUrl(),
+                        tour.getRating(),
+                        tour.getReviewCount()
                 );
                 activity.getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment)
@@ -255,14 +260,19 @@ public class HomeSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             itemView.setOnClickListener(v -> {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 DetailFragment fragment = DetailFragment.newInstance(
-                    hotel.getName(),
-                    hotel.getLocation(),
-                    hotel.getPrice(),
-                    hotel.getDescription(),
-                    hotel.getImageRes(),
-                    hotel.getImageUrl(),
-                    hotel.getRating(),
-                    hotel.getReviewCount()
+                        hotel.getName(),
+                        hotel.getLocation(),
+                        hotel.getPrice(),
+                        hotel.getDescription(),
+
+                        "", // itinerary ❗
+                        "", // included ❗
+                        "", // excluded ❗
+
+                        hotel.getImageRes(),
+                        hotel.getImageUrl(),
+                        hotel.getRating(),
+                        hotel.getReviewCount()
                 );
                 activity.getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment)

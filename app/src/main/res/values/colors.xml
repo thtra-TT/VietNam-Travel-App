@@ -6,4 +6,7 @@
     <color name="gray">#757575</color>
     <color name="accent_red">#EE0000</color>
     <color name="light_bg">#FFF8F6</color>
+    <color name="traveloka_blue">#0D6EFD</color>
+    <color name="primary_color">#007BFF</color>
+    <color name="primary_container">#D6E9FF</color>
 </resources>

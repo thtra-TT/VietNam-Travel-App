@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.vntravelapp.database.DatabaseHelper;
 
 public class LoginActivity extends AppCompatActivity {
@@ -21,10 +24,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        // ⚠️ setContentView phải gọi trước khi findViewById
+        setContentView(R.layout.activity_login);
+
         dbHelper = new DatabaseHelper(this);
 
-        // Kiểm tra nếu đã đăng nhập rồi thì vào thẳng Home
+        initViews();
+
+        // 🔹 Check login trước
         SharedPreferences pref = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         if (pref.getBoolean("is_logged_in", false)) {
             startActivity(new Intent(this, HomeActivity.class));
@@ -32,18 +40,18 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        setContentView(R.layout.activity_login);
-
-        initViews();
-
+        // 🔹 Sự kiện đăng ký
         tvRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
 
-        btnLogin.setOnClickListener(v -> {
-            handleLogin();
+        // 🔹 Quên mật khẩu (tạm thời demo)
+        tvForgotPassword.setOnClickListener(v -> {
+            Toast.makeText(this, "Chức năng đang phát triển", Toast.LENGTH_SHORT).show();
         });
+
+        // 🔹 Login
+        btnLogin.setOnClickListener(v -> handleLogin());
     }
 
     private void initViews() {
@@ -58,21 +66,29 @@ public class LoginActivity extends AppCompatActivity {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
 
+        // 🔴 Validate input
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Kiểm tra đăng nhập qua DatabaseHelper
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edtEmail.setError("Email không hợp lệ");
+            edtEmail.requestFocus();
+            return;
+        }
+
+        // 🔹 Check DB
         Cursor cursor = dbHelper.loginUser(email, password);
-        
+
         if (cursor != null && cursor.moveToFirst()) {
-            // Lấy thông tin user từ cursor
+
             String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
             String userImage = cursor.getString(cursor.getColumnIndexOrThrow("user_image"));
+
             cursor.close();
 
-            // Lưu trạng thái đăng nhập vào SharedPreferences
+            // 🔹 Lưu login state
             SharedPreferences pref = getSharedPreferences("UserPrefs", MODE_PRIVATE);
             SharedPreferences.Editor editor = pref.edit();
             editor.putBoolean("is_logged_in", true);
@@ -89,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("USER_IMAGE", userImage);
             startActivity(intent);
             finish();
+
         } else {
             if (cursor != null) cursor.close();
             Toast.makeText(this, "Sai email hoặc mật khẩu", Toast.LENGTH_SHORT).show();

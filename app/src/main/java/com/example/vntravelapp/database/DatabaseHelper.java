@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
     private static final String DATABASE_NAME = "vntravel.db";
-    private static final int DATABASE_VERSION = 17; // Seed thêm dữ liệu
+    private static final int DATABASE_VERSION = 19;
 
     private static final String TABLE_TOURS = "tours";
     private static final String TABLE_HOTELS = "hotels";
@@ -50,32 +50,250 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PHONE = "phone";
     private static final String COLUMN_USER_IMAGE = "user_image";
 
+    private static final String COLUMN_ITINERARY = "itinerary";
+    private static final String COLUMN_INCLUDED = "included";
+    private static final String COLUMN_EXCLUDED = "excluded";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_TOURS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_TITLE + " TEXT, " + COLUMN_LOCATION + " TEXT, " + COLUMN_DURATION + " TEXT, " + COLUMN_PRICE + " TEXT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_IMAGE_RES + " INTEGER, " + COLUMN_IMAGE_URL + " TEXT, " + COLUMN_RATING + " REAL, " + COLUMN_REVIEWS + " INTEGER)");
+        db.execSQL("CREATE TABLE " + TABLE_TOURS + " (" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_TITLE + " TEXT, " +
+                COLUMN_LOCATION + " TEXT, " +
+                COLUMN_DURATION + " TEXT, " +
+                COLUMN_PRICE + " TEXT, " +
+                COLUMN_DESCRIPTION + " TEXT, " +
+                COLUMN_ITINERARY + " TEXT, " +
+                COLUMN_INCLUDED + " TEXT, " +
+                COLUMN_EXCLUDED + " TEXT, " +
+                COLUMN_IMAGE_RES + " INTEGER, " +
+                COLUMN_IMAGE_URL + " TEXT, " +
+                COLUMN_RATING + " REAL, " +
+                COLUMN_REVIEWS + " INTEGER)");
         db.execSQL("CREATE TABLE " + TABLE_HOTELS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_TITLE + " TEXT, " + COLUMN_LOCATION + " TEXT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_PRICE + " TEXT, " + COLUMN_IMAGE_RES + " INTEGER, " + COLUMN_IMAGE_URL + " TEXT, " + COLUMN_RATING + " REAL, " + COLUMN_REVIEWS + " INTEGER)");
         db.execSQL("CREATE TABLE " + TABLE_COMBOS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_TITLE + " TEXT, " + COLUMN_LOCATION + " TEXT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_ORIGINAL_PRICE + " TEXT, " + COLUMN_PRICE + " TEXT, " + COLUMN_IMAGE_RES + " INTEGER, " + COLUMN_IMAGE_URL + " TEXT, " + COLUMN_RATING + " REAL, " + COLUMN_BADGE + " TEXT)");
         db.execSQL("CREATE TABLE " + TABLE_TICKETS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_TITLE + " TEXT, " + COLUMN_DATE_RANGE + " TEXT, " + COLUMN_PRICE + " TEXT, " + COLUMN_DISCOUNT + " TEXT, " + COLUMN_TYPE + " TEXT, " + COLUMN_IMAGE_RES + " INTEGER, " + COLUMN_IMAGE_URL + " TEXT)");
         db.execSQL("CREATE TABLE " + TABLE_USERS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_EMAIL + " TEXT UNIQUE, " + COLUMN_PASSWORD + " TEXT, " + COLUMN_FULLNAME + " TEXT, " + COLUMN_PHONE + " TEXT, " + COLUMN_USER_IMAGE + " TEXT)");
+        db.execSQL("CREATE TABLE orders (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "title TEXT," +
+                "date TEXT," +
+                "people INTEGER," +
+                "name TEXT," +
+                "phone TEXT" +
+                ")");
         seedData(db);
     }
 
     private void seedData(SQLiteDatabase db) {
-        insertTour(db, "Vịnh Hạ Long", "Quảng Ninh", "2N1Đ", "2.990.000đ", "Mô tả Hạ Long", 0, "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg", 4.8f, 150);
-        insertTour(db, "Phố Cổ Hội An", "Quảng Nam", "3N2Đ", "3.500.000đ", "Mô tả Hội An", 0, "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg", 4.9f, 200);
-        insertTour(db, "Chinh phục Fansipan", "Lào Cai", "3N2Đ", "4.200.000đ", "Trải nghiệm cáp treo và chạm tay vào nóc nhà Đông Dương tại Sa Pa.", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626520/1a3903f1-7c6a-4458-9fc6-519589789751.png", 4.7f, 85);
-        insertTour(db, "Cố Đô Huế", "Thừa Thiên Huế", "2N1Đ", "1.500.000đ", "Tìm về vẻ đẹp trầm mặc của Đại Nội và các lăng tẩm triều Nguyễn.", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626555/2f7a9346-9a04-4efc-b96a-73652ed4c945.png", 4.6f, 120);
-        insertTour(db, "Thành phố Ngàn Hoa", "Đà Lạt", "3N2Đ", "2.800.000đ", "Tận hưởng không khí se lạnh và check-in các vườn hoa đẹp mê hồn.", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626599/9e94999d-423a-4d23-a187-41317434956c.png", 4.8f, 310);
-        insertTour(db, "Bà Nà Hills - Cầu Vàng", "Đà Nẵng", "3N2Đ", "3.150.000đ", "Trải nghiệm Bà Nà Hills, Cầu Vàng và làng Pháp.", 0, "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", 4.7f, 180);
-        insertTour(db, "Phố cổ Hà Nội", "Hà Nội", "2N1Đ", "1.400.000đ", "Dạo phố cổ, Hồ Gươm, thưởng thức ẩm thực Hà Nội.", 0, "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee", 4.6f, 210);
-        insertTour(db, "Vũng Tàu biển xanh", "Bà Rịa - Vũng Tàu", "2N1Đ", "1.300.000đ", "Tắm biển Bãi Sau, tham quan tượng Chúa và hải đăng.", 0, "https://images.unsplash.com/photo-1500375592092-40eb2168fd21", 4.5f, 95);
-        insertTour(db, "Nha Trang 4 đảo", "Khánh Hòa", "3N2Đ", "3.600.000đ", "Tour 4 đảo, lặn ngắm san hô và tắm bùn khoáng.", 0, "https://images.unsplash.com/photo-1470770841072-f978cf4d019e", 4.7f, 160);
-        insertTour(db, "Cao nguyên đá Đồng Văn", "Hà Giang", "3N2Đ", "3.900.000đ", "Chinh phục đèo Mã Pì Lèng và phố cổ Đồng Văn.", 0, "https://images.unsplash.com/photo-1501785888041-af3ef285b470", 4.8f, 110);
+        insertTour(db,
+                "Vịnh Hạ Long",
+                "Quảng Ninh",
+                "2N1Đ",
+                "2.990.000đ",
+                "Khám phá kỳ quan thiên nhiên thế giới.",
 
+                "Ngày 1: Hà Nội → Hạ Long → Check-in du thuyền\n" +
+                        "Ngày 2: Hang Sửng Sốt → Kayak → Hà Nội",
+
+                "Xe đưa đón\nKhách sạn 3*\nĂn 3 bữa\nVé tham quan",
+
+                "Chi phí cá nhân\nĐồ uống\nTip HDV",
+
+                0,
+                "https://images.unsplash.com/photo-1643029891412-92f9a81a8c16?q=80&w=1486&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                4.8f,
+                150
+        );
+        insertTour(db,
+                "Phố Cổ Hội An",
+                "Quảng Nam",
+                "3N2Đ",
+                "3.500.000đ",
+                "Khám phá phố cổ lung linh đèn lồng và văn hóa đặc trưng miền Trung.",
+
+                "Ngày 1: Đà Nẵng → Hội An → Check-in phố cổ\n" +
+                        "Ngày 2: Tham quan Chùa Cầu, làng gốm Thanh Hà\n" +
+                        "Ngày 3: Tự do mua sắm → về",
+
+                "Xe đưa đón\nKhách sạn 3*\nĂn sáng\nVé tham quan",
+
+                "Chi phí cá nhân\nĂn trưa & tối\nTip HDV",
+
+                0,
+                "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg",
+                4.9f,
+                200
+        );
+
+        insertTour(db,
+                "Chinh phục Fansipan",
+                "Lào Cai",
+                "3N2Đ",
+                "4.200.000đ",
+                "Trải nghiệm nóc nhà Đông Dương tại Sa Pa.",
+
+                "Ngày 1: Hà Nội → Sa Pa\n" +
+                        "Ngày 2: Cáp treo Fansipan\n" +
+                        "Ngày 3: Bản Cát Cát → về",
+
+                "Xe giường nằm\nKhách sạn\nVé cáp treo\nĂn sáng",
+
+                "Chi phí cá nhân\nĂn trưa/tối",
+
+                0,
+                "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626520/1a3903f1-7c6a-4458-9fc6-519589789751.png",
+                4.7f,
+                85
+        );
+
+        insertTour(db,
+                "Cố Đô Huế",
+                "Thừa Thiên Huế",
+                "2N1Đ",
+                "1.500.000đ",
+                "Tham quan di sản văn hóa triều Nguyễn.",
+
+                "Ngày 1: Đại Nội, chùa Thiên Mụ\n" +
+                        "Ngày 2: Lăng Khải Định → về",
+
+                "Xe đưa đón\nVé tham quan\nĂn sáng",
+
+                "Chi phí cá nhân\nĂn trưa/tối",
+
+                0,
+                "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626555/2f7a9346-9a04-4efc-b96a-73652ed4c945.png",
+                4.6f,
+                120
+        );
+
+        insertTour(db,
+                "Thành phố Ngàn Hoa",
+                "Đà Lạt",
+                "3N2Đ",
+                "2.800.000đ",
+                "Check-in thiên đường hoa và khí hậu mát mẻ.",
+
+                "Ngày 1: TP.HCM → Đà Lạt\n" +
+                        "Ngày 2: Thung lũng tình yêu, Langbiang\n" +
+                        "Ngày 3: Chợ Đà Lạt → về",
+
+                "Xe đưa đón\nKhách sạn\nĂn sáng",
+
+                "Chi phí cá nhân\nVé trò chơi",
+
+                0,
+                "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773626599/9e94999d-423a-4d23-a187-41317434956c.png",
+                4.8f,
+                310
+        );
+
+        insertTour(db,
+                "Bà Nà Hills - Cầu Vàng",
+                "Đà Nẵng",
+                "3N2Đ",
+                "3.150.000đ",
+                "Check-in Cầu Vàng và làng Pháp.",
+
+                "Ngày 1: Đà Nẵng\n" +
+                        "Ngày 2: Bà Nà Hills\n" +
+                        "Ngày 3: Biển Mỹ Khê → về",
+
+                "Vé cáp treo\nXe đưa đón\nĂn sáng",
+
+                "Chi phí cá nhân",
+
+                0,
+                "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+                4.7f,
+                180
+        );
+
+        insertTour(db,
+                "Phố cổ Hà Nội",
+                "Hà Nội",
+                "2N1Đ",
+                "1.400.000đ",
+                "Trải nghiệm văn hóa thủ đô.",
+
+                "Ngày 1: Hồ Gươm, phố cổ\n" +
+                        "Ngày 2: Lăng Bác → về",
+
+                "Khách sạn\nĂn sáng\nXe đưa đón",
+
+                "Chi phí cá nhân",
+
+                0,
+                "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                4.6f,
+                210
+        );
+
+        insertTour(db,
+                "Vũng Tàu biển xanh",
+                "Bà Rịa - Vũng Tàu",
+                "2N1Đ",
+                "1.300.000đ",
+                "Du lịch biển gần Sài Gòn.",
+
+                "Ngày 1: TP.HCM → Vũng Tàu\n" +
+                        "Ngày 2: Tắm biển → về",
+
+                "Xe đưa đón\nKhách sạn",
+
+                "Ăn uống\nChi phí cá nhân",
+
+                0,
+                "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+                4.5f,
+                95
+        );
+
+        insertTour(db,
+                "Nha Trang 4 đảo",
+                "Khánh Hòa",
+                "3N2Đ",
+                "3.600.000đ",
+                "Tour biển đảo hấp dẫn.",
+
+                "Ngày 1: TP.HCM → Nha Trang\n" +
+                        "Ngày 2: Tour 4 đảo\n" +
+                        "Ngày 3: Tắm bùn → về",
+
+                "Tàu tham quan\nĂn trưa\nKhách sạn",
+
+                "Chi phí cá nhân",
+
+                0,
+                "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+                4.7f,
+                160
+        );
+
+        insertTour(db,
+                "Cao nguyên đá Đồng Văn",
+                "Hà Giang",
+                "3N2Đ",
+                "3.900.000đ",
+                "Cung đường phượt đẹp nhất Việt Nam.",
+
+                "Ngày 1: Hà Nội → Hà Giang\n" +
+                        "Ngày 2: Mã Pì Lèng\n" +
+                        "Ngày 3: Đồng Văn → về",
+
+                "Xe đưa đón\nKhách sạn\nĂn sáng",
+
+                "Chi phí cá nhân",
+
+                0,
+                "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+                4.8f,
+                110
+        );
         insertHotel(db, "Vinpearl Phú Quốc", "Phú Quốc", "Mô tả Vinpearl", "2.500.000đ", 0, "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg", 4.7f, 300);
         insertHotel(db, "InterContinental Đà Nẵng", "Đà Nẵng", "Tọa lạc tại Bán đảo Sơn Trà, thiết kế bởi kiến trúc sư lừng danh Bill Bensley.", "8.500.000đ", 0, "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb", 4.9f, 120);
         insertHotel(db, "Hotel de la Coupole", "Sa Pa", "Sự kết hợp hoàn hảo giữa thời trang Pháp và văn hóa dân tộc thiểu số Sa Pa.", "3.200.000đ", 0, "https://res.cloudinary.com/dzjlcbwwh/image/upload/v1773591886/8c59f89a-64c9-45e0-8b54-7e513f8b25b1.png", 4.8f, 450);
@@ -103,9 +321,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertTicket(db, "Hà Nội - Đà Lạt", "02/08 - 06/08", "2.050.000đ", "Giảm 8%", "Vé khứ hồi", 0, "https://images.unsplash.com/photo-1470770841072-f978cf4d019e");
     }
 
-    private void insertTour(SQLiteDatabase db, String t, String l, String d, String p, String desc, int r, String u, float rat, int rev) {
+    private void insertTour(SQLiteDatabase db, String t, String l, String d,
+                            String p, String desc, String itinerary,
+                            String included, String excluded,
+                            int r, String u, float rat, int rev) {
+
         ContentValues v = new ContentValues();
-        v.put(COLUMN_TITLE, t); v.put(COLUMN_LOCATION, l); v.put(COLUMN_DURATION, d); v.put(COLUMN_PRICE, p); v.put(COLUMN_DESCRIPTION, desc); v.put(COLUMN_IMAGE_RES, r); v.put(COLUMN_IMAGE_URL, u); v.put(COLUMN_RATING, rat); v.put(COLUMN_REVIEWS, rev);
+        v.put(COLUMN_TITLE, t);
+        v.put(COLUMN_LOCATION, l);
+        v.put(COLUMN_DURATION, d);
+        v.put(COLUMN_PRICE, p);
+        v.put(COLUMN_DESCRIPTION, desc);
+        v.put(COLUMN_ITINERARY, itinerary);
+        v.put(COLUMN_INCLUDED, included);
+        v.put(COLUMN_EXCLUDED, excluded);
+        v.put(COLUMN_IMAGE_RES, r);
+        v.put(COLUMN_IMAGE_URL, u);
+        v.put(COLUMN_RATING, rat);
+        v.put(COLUMN_REVIEWS, rev);
+
         db.insert(TABLE_TOURS, null, v);
     }
     private void insertHotel(SQLiteDatabase db, String t, String l, String d, String p, int r, String u, float rat, int rev) {
@@ -122,6 +356,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues v = new ContentValues();
         v.put(COLUMN_TITLE, r); v.put(COLUMN_DATE_RANGE, d); v.put(COLUMN_PRICE, p); v.put(COLUMN_DISCOUNT, dis); v.put(COLUMN_TYPE, t); v.put(COLUMN_IMAGE_RES, img); v.put(COLUMN_IMAGE_URL, url);
         db.insert(TABLE_TICKETS, null, v);
+    }
+
+    public boolean insertOrder(String title, String date, int people, String name, String phone) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("title", title);
+        values.put("date", date);
+        values.put("people", people);
+        values.put("name", name);
+        values.put("phone", phone);
+
+        long result = db.insert("orders", null, values);
+        return result != -1;
     }
 
     @Override
@@ -165,15 +413,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 list.add(new Tour(
-                    c.getString(c.getColumnIndexOrThrow(COLUMN_TITLE)),
-                    c.getString(c.getColumnIndexOrThrow(COLUMN_LOCATION)),
-                    c.getString(c.getColumnIndexOrThrow(COLUMN_DURATION)),
-                    c.getString(c.getColumnIndexOrThrow(COLUMN_PRICE)),
-                    c.getString(c.getColumnIndexOrThrow(COLUMN_DESCRIPTION)),
-                    c.getInt(c.getColumnIndexOrThrow(COLUMN_IMAGE_RES)),
-                    c.getString(c.getColumnIndexOrThrow(COLUMN_IMAGE_URL)),
-                    c.getFloat(c.getColumnIndexOrThrow(COLUMN_RATING)),
-                    c.getInt(c.getColumnIndexOrThrow(COLUMN_REVIEWS))
+                        c.getString(c.getColumnIndexOrThrow(COLUMN_TITLE)),
+                        c.getString(c.getColumnIndexOrThrow(COLUMN_LOCATION)),
+                        c.getString(c.getColumnIndexOrThrow(COLUMN_DURATION)),
+                        c.getString(c.getColumnIndexOrThrow(COLUMN_PRICE)),
+                        c.getString(c.getColumnIndexOrThrow(COLUMN_DESCRIPTION)),
+                        c.getString(c.getColumnIndexOrThrow(COLUMN_ITINERARY)),
+                        c.getString(c.getColumnIndexOrThrow(COLUMN_INCLUDED)),
+                        c.getString(c.getColumnIndexOrThrow(COLUMN_EXCLUDED)),
+                        c.getInt(c.getColumnIndexOrThrow(COLUMN_IMAGE_RES)),
+                        c.getString(c.getColumnIndexOrThrow(COLUMN_IMAGE_URL)),
+                        c.getFloat(c.getColumnIndexOrThrow(COLUMN_RATING)),
+                        c.getInt(c.getColumnIndexOrThrow(COLUMN_REVIEWS))
                 ));
             } while (c.moveToNext());
         }
@@ -242,5 +493,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         c.close();
         return list;
+    }
+
+    public Cursor getAllOrders() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM orders", null);
     }
 }

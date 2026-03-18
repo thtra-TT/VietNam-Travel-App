@@ -73,23 +73,9 @@ public class HomeFragment extends Fragment {
 
         tvNoResults = view.findViewById(R.id.tvNoResults);
         tvFeaturedTitle = view.findViewById(R.id.tvFeaturedTitle);
-        tvViewAll = view.findViewById(R.id.tvViewAll);
 
         EditText etSearch = view.findViewById(R.id.etSearchHome);
-        etSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterSearch(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
+        etSearch.setOnClickListener(v -> switchFragment(new SearchFragment()));
 
         return view;
     }
